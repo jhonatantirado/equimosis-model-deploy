@@ -12,7 +12,7 @@ import requests
 # export bruisedating_container=equimosisv3_20191108024659
 # export bruisedating_port=5408 -- This is the localhost port
 
-# export bruisedating_model_path=/Users/av_jtirado/Documents/DatacionEquimosis/TesisDatacionEquimosis/best-model
+# export bruisedating_model_path=/home/jhonatantiradotiradodeep/equimosis-model-deploy/best-model
 # export CPU_DOCKER_GCR_PATH=gcr.io/cloud-devrel-public-resources/gcloud-container-1.14.0:latest -- This is the Docker image
 
 # Pull the Docker image
@@ -20,6 +20,11 @@ import requests
 
 # Run container in Docker
 # sudo docker run --rm --name ${bruisedating_container} -p ${bruisedating_port}:8501 -v ${bruisedating_model_path}:/tmp/mounted_model/0001 -t ${CPU_DOCKER_GCR_PATH}
+
+
+# sudo docker run --rm --name equimosisv3_20191108024659 -p 8501:8501 -v /home/jhonatantiradotiradodeep/equimosis-model-deploy/best-model:/tmp/mounted_model/0001 -t gcr.io/cloud-devrel-public-resources/gcloud-container-1.14.0:latest
+
+
 # A saved_model.pb file should exist in the bruisedating_model_path directory
 
 # Execute this script
