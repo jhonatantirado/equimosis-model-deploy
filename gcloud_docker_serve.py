@@ -24,6 +24,17 @@ import requests
 
 # sudo docker run --rm --name equimosisv3_20191108024659 -p 80:8501 -v /home/jhonatantiradotiradodeep/equimosis-model-deploy/best-model:/tmp/mounted_model/0001 -t gcr.io/cloud-devrel-public-resources/gcloud-container-1.14.0:latest
 
+#Create docker image with base image plus prediction model, after running base image plus model path with docker run
+#docker commit 35027f92f2f8(container ID) bruise-dating:v1.0
+
+#Push image to Google Cloud Registry
+#docker tag bruise-dating:v1.0 gcr.io/equimosis/bruise-dating-api-tf
+#docker push gcr.io/equimosis/bruise-dating-api-tf
+
+
+#Google Cloud SDK - deployment using app.yaml with custom runtime when using containers
+#gcloud app deploy --image-url gcr.io/equimosis/bruise-dating-api-tf
+
 
 # A saved_model.pb file should exist in the bruisedating_model_path directory
 
