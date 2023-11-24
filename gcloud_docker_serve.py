@@ -12,7 +12,7 @@ import requests
 # export bruisedating_container=equimosisv3_20191108024659
 # export bruisedating_port=5408 -- This is the localhost port
 
-# export bruisedating_model_path=/home/jhonatantiradotiradodeep/equimosis-model-deploy/best-model
+# export bruisedating_model_path=/Users/jhonatantirado/code/equimosis-model-deploy/best-model
 # export CPU_DOCKER_GCR_PATH=gcr.io/cloud-devrel-public-resources/gcloud-container-1.14.0:latest -- This is the Docker image
 
 # Pull the Docker image
@@ -22,18 +22,27 @@ import requests
 # sudo docker run --rm --name ${bruisedating_container} -p ${bruisedating_port}:8501 -v ${bruisedating_model_path}:/tmp/mounted_model/0001 -t ${CPU_DOCKER_GCR_PATH}
 
 
-# sudo docker run --rm --name equimosisv3_20191108024659 -p 80:8501 -v /home/jhonatantiradotiradodeep/equimosis-model-deploy/best-model:/tmp/mounted_model/0001 -t gcr.io/cloud-devrel-public-resources/gcloud-container-1.14.0:latest
+# sudo docker run --rm --name equimosisv3_20191108024659 -p 5408:8501 -v /Users/jhonatantirado/code/equimosis-model-deploy/best-model:/tmp/mounted_model/0001 -t gcr.io/cloud-devrel-public-resources/gcloud-container-1.14.0:latest
 
 #Create docker image with base image plus prediction model, after running base image plus model path with docker run
 #docker commit 35027f92f2f8(container ID) bruise-dating:v1.0
+#docker commit 1aac7b1cd4014f4abac7f4ec447d4c70190d8e8f5f19126a3e980a6865cdd29f bruise-dating:v1.0
 
 #Push image to Google Cloud Registry
 #docker tag bruise-dating:v1.0 gcr.io/equimosis/bruise-dating-api-tf
 #docker push gcr.io/equimosis/bruise-dating-api-tf
 
+#Push image to new GOOGLE ARTIFACT Registry
+#docker tag bruise-dating:v1.0 us-central1-docker.pkg.dev/inner-orb-400721/quickstart-docker-repo/bruise-dating:v1.0
+#docker push us-central1-docker.pkg.dev/inner-orb-400721/quickstart-docker-repo/bruise-dating:v1.0
+
 
 #Google Cloud SDK - deployment using app.yaml with custom runtime when using containers
 #gcloud app deploy --image-url gcr.io/equimosis/bruise-dating-api-tf
+
+
+#ARTIFACT REGISTRY - NEW WAY
+#gcloud app deploy --image-url us-central1-docker.pkg.dev/inner-orb-400721/quickstart-docker-repo/bruise-dating:v1.0
 
 
 # A saved_model.pb file should exist in the bruisedating_model_path directory
@@ -82,6 +91,6 @@ def container_predict(image_file_path, image_key, port_number=5408):
 
 if __name__ == '__main__':
     #image_file_path='/Users/av_jtirado/Documents/DatacionEquimosis/TesisDatacionEquimosis/equimosisv3/Training/TwoDays/editada_WhatsAppImage2019-09-15at9.33.47PM.jpeg'
-    image_file_path='/Users/av_jtirado/Desktop/editada_IMG-20191018-WA0031.jpg'
-    image_key='Screen Shot 2020-12-21 at 18.03.14.PNG'
+    image_file_path='/Users/jhonatantirado/code/bruise-dating-paper-dataset/test/SixDays/e279b98b-10cb-4891-9f17-676b684ea845.jpg'
+    image_key='e279b98b-10cb-4891-9f17-676b684ea845.jpg'
     container_predict(image_file_path, image_key, port_number=5408)
