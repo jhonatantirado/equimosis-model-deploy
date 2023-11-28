@@ -21,20 +21,23 @@ import requests
 # Run container in Docker
 # sudo docker run --rm --name ${bruisedating_container} -p ${bruisedating_port}:8501 -v ${bruisedating_model_path}:/tmp/mounted_model/0001 -t ${CPU_DOCKER_GCR_PATH}
 
-
 # sudo docker run --rm --name equimosisv3_20191108024659 -p 5408:8501 -v /Users/jhonatantirado/code/equimosis-model-deploy/best-model:/tmp/mounted_model/0001 -t gcr.io/cloud-devrel-public-resources/gcloud-container-1.14.0:latest
+
+# sudo docker run --rm --name equimosisv3_20191108024659 -p 8080:8501 -v /home/datacionequimosis/equimosis-model-deploy/best-model:/tmp/mounted_model/0001 -t gcr.io/cloud-devrel-public-resources/gcloud-container-1.14.0:latest
 
 #Create docker image with base image plus prediction model, after running base image plus model path with docker run
 #docker commit 35027f92f2f8(container ID) bruise-dating:v1.0
-#docker commit 1aac7b1cd4014f4abac7f4ec447d4c70190d8e8f5f19126a3e980a6865cdd29f bruise-dating:v1.0
+#800b37e84689
+#docker commit 67b9a8f053ed bruise-dating:v1.1
+#sha256:7a1b1a400159a51ec5df85cd395e76f6f6eff26d5a5adaf269695426a2722509
 
 #Push image to Google Cloud Registry
 #docker tag bruise-dating:v1.0 gcr.io/equimosis/bruise-dating-api-tf
 #docker push gcr.io/equimosis/bruise-dating-api-tf
 
 #Push image to new GOOGLE ARTIFACT Registry
-#docker tag bruise-dating:v1.0 us-central1-docker.pkg.dev/inner-orb-400721/quickstart-docker-repo/bruise-dating:v1.0
-#docker push us-central1-docker.pkg.dev/inner-orb-400721/quickstart-docker-repo/bruise-dating:v1.0
+#docker tag bruise-dating:v1.1 us-central1-docker.pkg.dev/inner-orb-400721/quickstart-docker-repo/bruise-dating-new:v1.0
+#docker push us-central1-docker.pkg.dev/inner-orb-400721/quickstart-docker-repo/bruise-dating-new:v1.0
 
 
 #Google Cloud SDK - deployment using app.yaml with custom runtime when using containers
@@ -43,6 +46,7 @@ import requests
 
 #ARTIFACT REGISTRY - NEW WAY
 #gcloud app deploy --image-url us-central1-docker.pkg.dev/inner-orb-400721/quickstart-docker-repo/bruise-dating:v1.0
+#gcloud app deploy --image-url us-central1-docker.pkg.dev/inner-orb-400721/quickstart-docker-repo/bruise-dating-new:v1.0
 
 
 # A saved_model.pb file should exist in the bruisedating_model_path directory
